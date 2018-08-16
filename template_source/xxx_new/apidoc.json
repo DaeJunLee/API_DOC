@@ -1,0 +1,20 @@
+{
+  "name": "xxx",
+  "version": "0.1.8",
+  "description": "xxx API Description",
+  "title": "XXX API",
+  "url" : "http://xxx.co.kr",
+  "sampleUrl": "http://xxx.co.kr",
+  "header": {
+    "title": "",
+    "filename": "header.md"
+  },
+  "footer": {
+    "title": "",
+    "filename": "footer.md"
+  },
+  "template": {
+  	"withCompare": true,
+  	"withGenerator": true
+  }
+}

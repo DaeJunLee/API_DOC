@@ -1,0 +1,621 @@
+define({ "api": [
+  {
+    "type": "post",
+    "url": "/api/get/account",
+    "title": "회원정보",
+    "version": "0.1.8",
+    "name": "____",
+    "permission": [
+      {
+        "name": "oauth"
+      }
+    ],
+    "group": "Account",
+    "description": "<p>XXX의 회원정보</p>",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>token_type + access_token ex) bearer 1a26b8a3-924a-469e-97f2-a8123815a7ed</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Content-type",
+            "description": "<p>application/json</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n   authorization: bearer 06e78994-9ac4-4498-9d37-79589329d9a5,\n   content-type: application/json\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "hID",
+            "description": "<p>Unique ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>아이디(Email)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "passwd",
+            "description": "<p>비밀번호</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>이름</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>이메일</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "htel",
+            "description": "<p>전화번호</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "htel3s",
+            "description": "<p>전화번호 마지막 네자리</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "fcmtoken",
+            "description": "<p>권한레벨(ROLE_USER: Default)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "auth_level",
+            "description": "<p>FCM token</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "os",
+            "description": "<p>OS type</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response: 200",
+          "content": " HTTP/1.1 200 OK\n {\n   \"hID\": \"C0CF48ACFB73760\",\n   \"id\": \"dejavudev@gmail.com\",\n   \"passwd\": \"*77B48D6366D102139D3719F48B811EAE123B2CA5\",\n   \"name\": \"\",\n   \"email\": \"dejavudev@gmail.com\",\n   \"htel\": \"010-6651-8462\",\n   \"htel3\": \"8462\",\n   \"fcmtoken\": \"cnz_cT0kup0:APA91bFyp9IjmHX9BZKwpnvLwPddI9as2peuicfkdjk0N76z8Rm1Awnio9ezwqaWHMNgY-cn5K1jCC8WGrA3AXmyu29Flzdd2hTIgt_cl-YdkFidPv3ROlMmVejvLklIZpn-z609oB0M\",\n   \"auth_level\": \"ROLE_USER\",\n   \"os\": \"ios\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "error",
+            "description": ""
+          },
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "error_description",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response: 401",
+          "content": "HTTP/1.1 401\n{\n   \"error\": \"invalid_token\",\n   \"error_description\": \"Invalid access token: 06e78994-9ac4-4498-9d37-79589329d9a51\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response: 500",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/Legacy_AAQD_API.php",
+    "groupTitle": "Account"
+  },
+  {
+    "type": "post",
+    "url": "/oauth/token",
+    "title": "로그인",
+    "version": "0.2.0",
+    "name": "___",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "group": "Legacy",
+    "description": "<p>사용자를 확인 한후 api 연결을 위한 token을 내려 받기 위한 API</p>",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Basic ‘encoded “smart:secret” to base64’ ex) Basic c21hcnQ6c2VjcmV0</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Content-Type",
+            "description": "<p>application/x-www-form-urlencoded; charset=utf-8</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>사용자명 : ex) dev.smartinfini@gmail.com</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>접근 토근</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "token_type",
+            "description": "<p>토근형태</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "htel",
+            "description": "<p>전화번호</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "htel3s",
+            "description": "<p>전화번호 마지막 네자리</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "fcmtoken",
+            "description": "<p>권한레벨(ROLE_USER: Default)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "auth_level",
+            "description": "<p>FCM token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response: 300",
+          "content": "HTTP/1.1 200 OK\n{\n     \"access_token\": \"06e78994-9ac4-4498-9d37-79589329d9a5\",\n     \"token_type\":  \"bearer\",\n     \"temp\": \"---------------\"\n     \"scope\": \"read write\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "custom_error",
+            "description": "<p>에러</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "custom_error_description",
+            "description": "<p>에러내용</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response: 404",
+          "content": "HTTP/1.1 404 Not Found",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response: 500",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/Legacy_AAQD_API.php",
+    "groupTitle": "Legacy"
+  },
+  {
+    "type": "post",
+    "url": "/oauth/token",
+    "title": "로그인",
+    "version": "0.1.9",
+    "name": "___",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "group": "Legacy",
+    "description": "<p>사용자를 확인 한후 api 연결을 위한 token을 내려 받기 위한 API</p>",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Basic ‘encoded “smart:secret” to base64’ ex) Basic c21hcnQ6c2VjcmV0</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Content-Type",
+            "description": "<p>application/x-www-form-urlencoded; charset=utf-8</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>사용자명 : ex) dev.smartinfini@gmail.com</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>비밀번호</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>접근 토근</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "token_type",
+            "description": "<p>토근형태</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response: 200",
+          "content": "HTTP/1.1 200 OK\n{\n     \"access_token\": \"06e78994-9ac4-4498-9d37-79589329d9a5\",\n     \"token_type\":  \"bearer\",\n     \"scope\": \"read write\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "custom_error",
+            "description": "<p>에러</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "custom_error_description",
+            "description": "<p>에러내용</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response: 400",
+          "content": "HTTP/1.1 400 Bad Reauest\n{\n     \"custom_error\": \"my custom exception\",\n     \"custom_error_description\": \"Bad credentials\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response: 500",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/Legacy_AAQD_API.php",
+    "groupTitle": "Legacy"
+  },
+  {
+    "type": "post",
+    "url": "/oauth/token",
+    "title": "로그인",
+    "version": "0.1.8",
+    "name": "___",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "group": "Legacy",
+    "description": "<p>사용자를 확인 한후 api 연결을 위한 token을 내려 받기 위한 API</p>",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Basic ‘encoded “smart:secret” to base64’ ex) Basic c21hcnQ6c2VjcmV0</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Content-Type",
+            "description": "<p>application/x-www-form-urlencoded; charset=utf-8</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>사용자명 : ex) dev.smartinfini@gmail.com</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>비밀번호</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grant_type",
+            "description": "<p>인증타입 : password(id/pw 기반)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>접근 토근</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "token_type",
+            "description": "<p>토근형태</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "scope",
+            "description": "<p>범위</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response: 200",
+          "content": "HTTP/1.1 200 OK\n{\n     \"access_token\": \"06e78994-9ac4-4498-9d37-79589329d9a5\",\n     \"token_type\":  \"bearer\",\n     \"scope\": \"read write\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "custom_error",
+            "description": "<p>에러</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "custom_error_description",
+            "description": "<p>에러내용</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response: 400",
+          "content": "HTTP/1.1 400 Bad Reauest\n{\n     \"custom_error\": \"my custom exception\",\n     \"custom_error_description\": \"Bad credentials\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response: 500",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/Legacy_AAQD_API.php",
+    "groupTitle": "Legacy"
+  },
+  {
+    "type": "post",
+    "url": "/oauth/logout",
+    "title": "로그아웃",
+    "version": "0.1.8",
+    "name": "____",
+    "permission": [
+      {
+        "name": "oauth"
+      }
+    ],
+    "group": "Legacy",
+    "description": "<p>로그아웃</p>",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>bearer 06e78994-9ac4-4498-9d37-79589329d9a5</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Content-Type",
+            "description": "<p>application/json;</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "result",
+            "description": "<p>(success : 성공, failed : 실패)</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response: 200",
+          "content": "HTTP/1.1 200 OK\n{\n     \"result\": \"success\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "error",
+            "description": "<p>에러</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response: 401",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n     \"error\": \"invalid_token\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response: 500",
+          "content": "HTTP/1.1 500 Internal Server Error",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/Legacy_AAQD_API.php",
+    "groupTitle": "Legacy"
+  }
+] });
