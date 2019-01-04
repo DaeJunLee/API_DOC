@@ -1,5 +1,5 @@
 # API
-API DOCS를 만들기 위하여 [APIDOC](apidocjs.com)를 활용하였습니다. SWAGGER등 여러가지가 있지만, 가장 간편하게 사용할수 있는것으로 판단 되어 우리는 APIDOC을 사용합니다.
+API DOCS를 만들기 위하여 [APIDOC](http://apidocjs.com/)를 활용하였습니다. SWAGGER등 여러가지가 있지만, 가장 간편하게 사용할수 있는것으로 판단 되어 우리는 APIDOC을 사용합니다.
 
 
 ## HOW TO INSTALL
